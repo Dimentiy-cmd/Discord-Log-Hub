@@ -1,0 +1,11 @@
+<header class="d-flex justify-content-between align-items-center py-3">
+    <h1 class="h4 mb-0 text-primary">
+        <a href="{{ url_for('index') }}", class="text-decoration-none"><i class="bi bi-robot"></i> Discord Log Hub</a>
+    </h1>
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target=".sidebar">
+        <i class="bi bi-list"></i>
+    </button>
+    <form action="{{ url_for('logout') }}">
+        <button class="btn btn-outline-danger btn-sm"><i class="bi bi-box-arrow-right"></i> Выйти</button>
+    </form>
+</header>
