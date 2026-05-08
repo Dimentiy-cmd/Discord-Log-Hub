@@ -274,7 +274,7 @@ def internal_server_error(e):
     return render_template('errors/500.html'), 500
 
 def run_flask():
-    app.run(host="0.0.0.0", port=1000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)
 
 if __name__ == "__main__":
     run_flask()

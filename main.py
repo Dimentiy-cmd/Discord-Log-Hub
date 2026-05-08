@@ -24,7 +24,7 @@ else:
 if sys.platform == "win32":
     db_path = "data/data.db"
 elif sys.platform == "linux":
-    db_path = "/data/data.db"
+    db_path = "data/data.db"
 elif sys.platform == "darwin":
     db_path = "data/data.db"
 
