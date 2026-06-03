@@ -38,14 +38,14 @@ class UsersCog(commands.Cog):
 
             embed = disnake.Embed(title="Список пользователей:", color=disnake.Color(get_system_color(interaction.guild.id)))
             for user in users:
-                embed.add_field(name=f"{user[1]}#{user[2]}", value=f"ID: {user[0]} уровень: {user[3]}", inline=False)
+                embed.add_field(name=f"{user[1]}#{user[2]}", value=f"ID: {user[0]} LVL: {user[3]}", inline=False)
             await interaction.followup.send(embed=embed)
         else:
             if not users:
                 await interaction.followup.send("Нет зарегистрированных пользователей на этом сервере.")
                 return
 
-            user_list = "\n".join([f"{user[0]} уровень: {user[3]} - {user[1]}#{user[2]}" for user in users])
+            user_list = "\n".join([f"{user[0]} LVL: {user[3]} - {user[1]}#{user[2]}" for user in users])
             await interaction.followup.send(f"Список пользователей:\n{user_list}")
 
     @user.sub_command(name="add", description="Добавить пользователя")
