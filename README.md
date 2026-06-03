@@ -4,7 +4,7 @@
 # Discord Log Hub
 **Мощная и гибкая система логирования для ваших Discord-сообществ**
 
-[![Версия](https://img.shields.io/badge/Версия-1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/Dimentiy-cmd/Discord-Log-Hub/releases)
+[![Версия](https://img.shields.io/badge/Версия-1.1.0-blue?style=for-the-badge&logo=github)](https://github.com/Dimentiy-cmd/Discord-Log-Hub/releases)
 [![Лицензия](https://img.shields.io/badge/Лицензия-MIT-green?style=for-the-badge&logo=opensourceinitiative)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.1.2-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
@@ -47,7 +47,7 @@ Discord Log Hub позволяет записывать, хранить и пр�
 
 ### 🐧 Установка на сервер (протестировано на Debian/Fedora)
 
-1. **Подключение:** арендуйте VPS/VDS у любого провайдера. После создания сервера подключитесь к нему через SSH:
+Арендуйте VPS/VDS у любого провайдера. После создания сервера подключитесь к нему через SSH:
 
 ```bash
 ssh root@server-ip
