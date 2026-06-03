@@ -2,7 +2,7 @@
 <img width="250" alt="Discord Log Hub Logo" src="https://cdn.imgchest.com/files/f97b4f383b68.png" />
 
 # Discord Log Hub
-**Мощная и гибкая система логирования для Discord-серверов**
+**Мощная и гибкая система логирования для ваших Discord-сообществ**
 
 [![Версия](https://img.shields.io/badge/Версия-1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/Dimentiy-cmd/Discord-Log-Hub/releases)
 [![Лицензия](https://img.shields.io/badge/Лицензия-MIT-green?style=for-the-badge&logo=opensourceinitiative)](https://opensource.org/licenses/MIT)
@@ -40,122 +40,78 @@ Discord Log Hub позволяет записывать, хранить и пр�
 
 ## 🚀 Быстрый старт
 
-### Требования
+### 🛠️ Требования
 - Python 3.8 или выше
-- Windows или Linux дистрибутив
+- Windows или любой современный дистрибутив Linux
 - Git
 
-### 🪟 Установка на Windows
+### 🐧 Установка на сервер (протестировано на Debian/Fedora)
 
-Перед началом убедитесь, что у вас установлен Python и Git.
-
-1. **Клонируйте репозиторий**
-   ```bash
-   git clone https://github.com/Dimentiy-cmd/Discord-Log-Hub
-   cd Discord-Log-Hub
-   ```
-
-2. **Запустите установщик**
-   ```cmd
-   setup.exe
-   ```
-   > Следуйте инструкциям для создания всех нужных файлов
-
-3. **Установите зависимости**
-   ```cmd
-   pip install -r requirements.txt
-   ```
-
-4. **Запустите приложение**
-   ```cmd
-   python main.py
-   ```
-
-### 🐧 Установка на Linux
-
-Перед началом убедитесь, что у вас установлен Python и Git.
+1. **Подключение:** арендуйте VPS/VDS у любого провайдера. После создания сервера подключитесь к нему через SSH:
 
 ```bash
-sudo apt install git python3 python3-pip python3-venv
+ssh root@server-ip
 ```
 
-1. **Клонируйте репозиторий**
-   ```bash
-   git clone https://github.com/Dimentiy-cmd/Discord-Log-Hub
-   cd Discord-Log-Hub
-   ```
+Вводим пароль от сервера который был выслан на почту/выдан при покупке. Обновляем пакетный менеджер:
 
-2. **Запустите установщик**
-   ```bash
-   chmod +x setup
-   ./setup
-   ```
-   > Следуйте инструкциям для создания всех нужных файлов
+Если у вас Debian/Ubuntu:
 
-3. **Создайте и активируйте виртуальное окружение**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
-4. **Установите зависимости**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Если у вас Fedora:
 
-5. **Запустите приложение**
-   ```bash
-   python main.py
-   ```
+```
+sudo dnf update && sudo dnf upgrade
+```
 
-6. **Деактивируйте виртуальное окружение** (опционально)
-   ```bash
-   deactivate
-   ```
+Устанавливаем docker через официальный скрипт:
 
-## 🌐 Деплой
+```bash
+curl -fsSL https://get.docker.com | sudo sh
+```
 
-### ☁️ Amvera Cloud
+Клонируем репозиторий:
 
-1. **Подготовьте проект локально**
-   ```bash
-   git clone https://github.com/Dimentiy-cmd/Discord-Log-Hub
-   cd Discord-Log-Hub
-   ```
+```bash
+git clone https://github.com/Dimentiy-cmd/Discord-Log-Hub && cd Discord-Log-Hub
+```
 
-2. **Запустите setup** (Windows или Linux в зависимости от вашей ОС) и следуйте инструкциям для создания всех нужных файлов.
+Создаем и редактируем .env файл:
 
-3. **Создайте проект на Amvera**
-   - Зарегистрируйтесь на [Amvera Cloud](https://amvera.ru)
-   - Нажмите "Создать проект" → "Приложение"
-   - Введите название и выберите тариф
+```bash
+cp .env.example .env && nano .env
+```
 
-4. **Подключите репозиторий**
-   ```bash
-   git remote add amvera https://git.amvera.ru/<имя-пользователя>/<название-проекта>
-   ```
+В строку `TOKEN=""` вставляем токен от бота. Запускаем контейнер:
 
-5. **Загрузите код**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push amvera master
-   ```
+```
+docker compose up -d
+```
 
-6. **Настройте домен** (опционально)
-   - В настройках проекта: "Домены" → "Создать доменное имя"
-   - Выберите "HTTPS" и "Бесплатный домен Амвера"
+Приглашаем бота на сервер и выдаем ему права администратора. После установки запускаем команду `/setup` и в аргумент `log_url` прописываем ссылку в формате:
 
-> 🚀 Сборка запустится автоматически и проект будет доступен через несколько минут
+```
+http://server-ip:5000
+```
 
-## 🛠️ Технический стек
+В личные сообщения бот отправит вам пароль для авторизации в веб-интерфейсе.
 
-| Компонент | Технология |
-|-----------|------------|
-| **Backend** | Python, Flask, Disnake |
-| **Frontend** | HTML, CSS, JavaScript |
-| **База данных** | SQLite |
+### Обновление
 
+Обновляем репозиторий через git:
+
+```bash
+git fetch && git pull
+```
+
+Пересобираем контейнер:
+
+```bash
+docker compose up -d --build
+```
 ## 🤝 Поддержка и сообщество
 
 ### 🆘 Нужна помощь?
