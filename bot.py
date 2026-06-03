@@ -1,15 +1,16 @@
+import os
 import disnake
 
-from config import TOKEN
 from loguru import logger
 from disnake.ext import commands
 from main import connection, cursor
 
+TOKEN = os.getenv("TOKEN")
 bot = commands.Bot(command_prefix='!', intents=disnake.Intents.all())
 
 @bot.event
 async def on_ready():
-    logger.info("Бот запущен")
+    logger.info("Бот запущен!")
 
 @bot.event
 async def on_slash_command_error(interaction: disnake.ApplicationCommandInteraction, error: Exception):
@@ -50,6 +51,7 @@ def run_bot():
         logger.info("Загружен ког setup")
         bot.load_extension("cogs.users")
         logger.info("Загружен ког users")
+        logger.info("Запуск бота...")
         bot.run(TOKEN)
     except Exception as e:
         logger.error(f"Ошибка при запуске бота или загрузке кога: {e}")

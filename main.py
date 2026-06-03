@@ -3,7 +3,6 @@ import sys
 import string
 import random
 import sqlite3
-import importlib
 import subprocess
 
 from loguru import logger
@@ -11,14 +10,10 @@ from loguru import logger
 if not os.path.exists("data"):
     os.mkdir("data")
 
-if os.path.exists("config.py"):
-    config = importlib.import_module("config")
-    TOKEN = config.TOKEN
-    if TOKEN == "":
-        logger.error("ОШИБКА | Не указан токен бота!")
-        sys.exit(1)
-else:
-    logger.error("ОШИБКА | Файл конфига не найден!")
+TOKEN = os.getenv("TOKEN")
+
+if not TOKEN:
+    logger.error("ОШИБКА | Не указан токен бота! Убедитесь, что он задан в .env")
     sys.exit(1)
 
 if sys.platform == "win32":

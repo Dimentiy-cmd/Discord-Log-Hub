@@ -1,0 +1,12 @@
+services:
+  discord-log-hub:
+    build: .
+    image: discord-log-hub:latest
+    container_name: discord-log-hub
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
