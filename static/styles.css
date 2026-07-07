@@ -40,10 +40,11 @@ body {
 }
 
 header {
+    position: fixed;
     background-color: var(--bg-secondary);
     border-bottom: 1px solid var(--border-color);
     height: var(--header-height);
-    padding: 0 1.5rem;
+    padding: 0 1.5rem !important;
     top: 0;
     left: 0;
     right: 0;
