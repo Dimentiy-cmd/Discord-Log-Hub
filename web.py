@@ -257,7 +257,9 @@ def logs_other():
 @app.route("/settings")
 @checklogin
 def settings():
-    return render_template('settings.html')
+    cursor.execute("SELECT * FROM settings LIMIT 1")
+    settings = cursor.fetchone()
+    return render_template('settings.html', settings=settings)
 
 @app.route('/logout')
 @checklogin

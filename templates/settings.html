@@ -15,15 +15,70 @@
         <div class="row">
             {% include 'includes/sidebar.html' %}
             <main class="col-md-9 col-lg-10 px-md-4 py-4">
+                {% macro switch(id, label, value) %}
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" role="switch" id="{{ id }}" {% if value %}checked{% endif %} disabled>
+                    <label class="form-check-label" for="{{ id }}">{{ label }}</label>
+                </div>
+                {% endmacro %}
                 <section>
                     <h2 class="h4 mb-4 text-primary">
                         <i class="bi bi-gear me-2"></i> Настройки
                     </h2>
                     <div class="row g-3 mb-4">
-                        <div class="col-md-4">
-                            <div class="card bg-secondary text-white">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card bg-secondary text-white h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">В разработке...</h5>
+                                    <h5 class="card-title text-start">Основные настройки</h5>
+                                    {{ switch('enabled', 'Логирование', settings and settings['enabled']) }}
+                                    {{ switch('use_embed', 'Embed-сообщения', settings and settings['use_embed']) }}
+                                    {{ switch('ignore_bots', 'Игнорировать ботов', settings and settings['ignore_bots']) }}
+                                    <div class="d-flex align-items-center mt-3">
+                                        <span class="me-2">Цвет embed-сообщений:</span>
+                                        <code>{{ settings['system_color'] if settings else '#2f3136' }}</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card bg-secondary text-white h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-start">Логирование сообщений</h5>
+                                    {{ switch('log_message_edit', 'Редактирование', settings and settings['log_message_edit']) }}
+                                    {{ switch('log_message_delete', 'Удаление', settings and settings['log_message_delete']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card bg-secondary text-white h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-start">Логирование участников</h5>
+                                    {{ switch('log_member_join', 'Вход', settings and settings['log_member_join']) }}
+                                    {{ switch('log_member_leave', 'Выход', settings and settings['log_member_leave']) }}
+                                    {{ switch('log_member_ban', 'Бан', settings and settings['log_member_ban']) }}
+                                    {{ switch('log_member_unban', 'Разбан', settings and settings['log_member_unban']) }}
+                                    {{ switch('log_member_nickname_change', 'Смена ника', settings and settings['log_member_nickname_change']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card bg-secondary text-white h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-start">Логирование сервера</h5>
+                                    {{ switch('log_role_changes', 'Изменение ролей', settings and settings['log_role_changes']) }}
+                                    {{ switch('log_channel_updates', 'Изменение каналов', settings and settings['log_channel_updates']) }}
+                                    {{ switch('log_voice_channel_events', 'Голосовые каналы', settings and settings['log_voice_channel_events']) }}
+                                    {{ switch('log_invites', 'Приглашения', settings and settings['log_invites']) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card bg-secondary text-white h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title text-start">Прочее</h5>
+                                    {{ switch('log_command_usage', 'Использование команд', settings and settings['log_command_usage']) }}
+                                    {{ switch('log_emoji_changes', 'Изменение эмодзи', settings and settings['log_emoji_changes']) }}
+                                    {{ switch('log_sticker_changes', 'Изменение стикеров', settings and settings['log_sticker_changes']) }}
                                 </div>
                             </div>
                         </div>
@@ -33,5 +88,10 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.querySelectorAll('.color-swatch').forEach(function (el) {
+            el.style.backgroundColor = el.dataset.color;
+        });
+    </script>
 </body>
 </html>
